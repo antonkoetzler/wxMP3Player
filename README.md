@@ -1,6 +1,7 @@
 # wxMP3Player
 An MP3 player using wxWidgets
 
+# GNU GPL 3.0 License
 wxMP3Player is a simple MP3 player that is made with wxWidgets.
 Copyright (C) 2021 Anton Koetzler-Faust
 
