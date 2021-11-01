@@ -2,23 +2,18 @@
 
 #include <wx/wx.h>
 #include "SongList.h"
+#include "Menubar.h"
 
 class Frame : public wxFrame
 {
 	public:
 		Frame();
-		virtual ~Frame();
+		virtual ~Frame();	
 
-		// Event functions
-		void Exit(wxCommandEvent&);
-
-protected:
+private:
 	wxDECLARE_EVENT_TABLE();
 
-	// Menubar
-	wxMenuBar* menubar;
-		wxMenu* file;
-			wxMenuItem* exit;
+	Menubar* menubar;
 	
 	SongList* songs;
 };
