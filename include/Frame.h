@@ -1,22 +1,29 @@
 #pragma once
 
 #include <wx/wx.h>
+#include <wx/dir.h>
+#include "SongList.h"
 
 class Frame : public wxFrame
 {
 	public:
 		Frame();
-		~Frame();
+		virtual ~Frame();
 
 		// Event functions
 		void Exit(wxCommandEvent&);
 
-private:
+protected:
 	wxDECLARE_EVENT_TABLE();
 
 	// Menubar
 	wxMenuBar* menubar;
 		wxMenu* file;
 			wxMenuItem* exit;
+	
+	// Listing files
+	wxDir* directory;
+
+	SongList* songs;
 };
 

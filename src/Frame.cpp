@@ -8,7 +8,8 @@ Frame::Frame() : wxFrame(nullptr, wxID_ANY, "wxMP3Player", wxDefaultPosition, wx
 {
 	// File
 	file = new wxMenu();
-	
+
+	// File: Exit
 	exit = new wxMenuItem(
 		nullptr,
 		wxID_EXIT,
@@ -25,6 +26,17 @@ Frame::Frame() : wxFrame(nullptr, wxID_ANY, "wxMP3Player", wxDefaultPosition, wx
 
 	// Setting the menubar
 	SetMenuBar(menubar);
+
+
+
+	directory = new wxDir(wxGetCwd());
+	
+	if (directory->IsOpened())
+	{
+		std::cout << directory->GetName() << std::endl;
+	}
+
+	songs = new SongList(this, wxID_ANY);
 }
 
 Frame::~Frame() { this->Destroy(); }
