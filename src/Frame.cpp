@@ -29,13 +29,7 @@ Frame::Frame() : wxFrame(nullptr, wxID_ANY, "wxMP3Player", wxDefaultPosition, wx
 
 
 
-	directory = new wxDir(wxGetCwd());
-	
-	if (directory->IsOpened())
-	{
-		std::cout << directory->GetName() << std::endl;
-	}
-
+	// Listing the user's music directory
 	songs = new SongList(this, wxID_ANY);
 }
 
