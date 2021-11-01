@@ -2,7 +2,7 @@
 
 #include <wx/wx.h>
 #include "SongList.h"
-#include "Menubar.h"
+#include "MenuBar.h"
 
 class Frame : public wxFrame
 {
@@ -13,7 +13,7 @@ class Frame : public wxFrame
 private:
 	wxDECLARE_EVENT_TABLE();
 
-	Menubar* menubar;
+	MenuBar* menubar;
 	
 	SongList* songs;
 };

@@ -2,10 +2,10 @@
 
 #include <wx/wx.h>
 
-class Menubar : public wxMenuBar
+class MenuBar : public wxMenuBar
 {
 public:
-	Menubar();
+	MenuBar();
 
 	void Exit(wxCommandEvent&);
 

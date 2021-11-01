@@ -1,7 +1,7 @@
-#include "Menubar.h"
+#include "MenuBar.h"
 #include "Frame.h"
 
-Menubar::Menubar() : wxMenuBar()
+MenuBar::MenuBar() : wxMenuBar()
 {
 	file = new wxMenu();
 
@@ -18,4 +18,4 @@ Menubar::Menubar() : wxMenuBar()
 	this->Append(file, "File");
 }
 
-void Menubar::Exit(wxCommandEvent& evt) { Close(true); }
+void MenuBar::Exit(wxCommandEvent& evt) { Close(true); }
