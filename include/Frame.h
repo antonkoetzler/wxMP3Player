@@ -10,6 +10,8 @@ public:
 	Frame();
 	virtual ~Frame();	
 
+	void foo(wxCommandEvent&);
+
 private:
 	wxDECLARE_EVENT_TABLE();
 

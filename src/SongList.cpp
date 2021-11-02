@@ -1,11 +1,32 @@
 #include "SongList.h"
 
-SongList::SongList(wxWindow* parent, wxWindowID id) : wxListBox(parent, id, wxDefaultPosition, wxDefaultSize)
+SongList::SongList(wxWindow* parent) : wxListBox(parent, SONGLIST, wxDefaultPosition, wxDefaultSize)
 {
-	this->Insert("Hello", 0);
-	this->Insert("Another song", 1);
+	directory = nullptr;
+	listSongs();
+}
 
-	directory = new wxDir(wxGetCwd());
-	if (directory->IsOpened()) std::cout << directory->GetName() << std::endl;
+void SongList::listSongs()
+{
+	wxString defaultDirectory = wxGetCwd() + "/../songs";
+	directory = new wxDir(defaultDirectory);
+
+	if (directory->IsOpened())
+	{
+		wxString filename;
+		bool fileFound = directory->GetFirst(
+			&filename,
+			wxEmptyString,
+			wxDIR_FILES
+		);
+
+		while (fileFound)
+		{
+			this->Append(filename);
+			fileFound = directory->GetNext(&filename);
+		}
+	}
+
+	delete directory; directory = nullptr;
 }
 
