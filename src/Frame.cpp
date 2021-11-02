@@ -24,6 +24,6 @@ Frame::~Frame() { this->Destroy(); }
 
 void Frame::foo(wxCommandEvent& evt)
 {
-	std::cout << evt.GetString() << std::endl;
+	MusicControl* musicControl = new MusicControl(this);
 }
 

@@ -3,6 +3,7 @@
 #include <wx/wx.h>
 #include "SongList.h"
 #include "MenuBar.h"
+#include "MusicControl.h"
 
 class Frame : public wxFrame
 {
