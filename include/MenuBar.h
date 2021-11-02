@@ -6,10 +6,10 @@ class MenuBar : public wxMenuBar
 {
 public:
 	MenuBar();
-
 	void Exit(wxCommandEvent&);
 
 private:
 	wxMenu* file;
 		wxMenuItem* exit;
 };
+

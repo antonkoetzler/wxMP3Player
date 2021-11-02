@@ -10,8 +10,6 @@ class SongList : public wxListBox
 public:
 	SongList(wxWindow*);
 
-	void listSongs();
-
 private:
 	wxDir* directory;
 };
