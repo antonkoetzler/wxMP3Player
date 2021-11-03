@@ -11,6 +11,9 @@ public:
 	Frame();
 	virtual ~Frame();	
 
+	// Event functions
+	void EnableMusicControls(wxCommandEvent&);
+
 private:
 	wxDECLARE_EVENT_TABLE();
 
