@@ -15,5 +15,7 @@ void MusicControls::loadMusicControls()
 
 	if (imageBitmap.IsOk())
 		controlsSizer->Add(new wxBitmapButton(this, PLAYBUTTON, imageBitmap), 0, wxCENTER);
+	
+	this->SetSizer(controlsSizer);
 }
 
