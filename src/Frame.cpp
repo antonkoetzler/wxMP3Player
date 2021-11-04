@@ -19,7 +19,6 @@ Frame::Frame() : wxFrame(nullptr, wxID_ANY, "wxMP3Player", wxDefaultPosition, wx
 
 	// SongList
 	songlist = new SongList(this);
-	songlist->Append("Hello");
 
 	controller->Add(songlist, 1, wxEXPAND);
 
