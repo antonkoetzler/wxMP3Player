@@ -3,6 +3,7 @@
 BEGIN_EVENT_TABLE(Frame, wxFrame)
 	// MenuBar events
 	EVT_MENU(wxID_EXIT, MenuBar::Exit)
+	EVT_MENU(YT2MP3, MenuBar::Youtube2MP3)
 
 	// SongList events
 	EVT_LISTBOX_DCLICK(SONGLIST, Frame::EnableMusicControls)
