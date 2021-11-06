@@ -36,5 +36,14 @@ void MenuBar::Youtube2MP3(wxCommandEvent& evt)
 {
 	// ./youtube-dl -x --audio-format=mp3 -o <directory> <url>
 	wxExecute("echo hi");
+
+	wxFrame* newWindow = new wxFrame(
+		nullptr,
+		wxID_ANY,
+		"Youtube 2 MP3",
+		wxDefaultPosition,
+		wxDefaultSize
+	);
+	newWindow->Show(true);
 }
 
