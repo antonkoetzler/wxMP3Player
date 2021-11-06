@@ -29,12 +29,15 @@ Frame::~Frame() { this->Destroy(); }
 
 void Frame::EnableMusicControls(wxCommandEvent& evt)
 {
-	wxSize parentSize = this->GetSize();
-	wxSize musiccontrolsSize = wxSize(parentSize.GetWidth(), 100);
-	musiccontrols = new MusicControls(this, musiccontrolsSize);
+	if (musiccontrols == nullptr)
+	{
+		wxSize parentSize = this->GetSize();
+		wxSize musiccontrolsSize = wxSize(parentSize.GetWidth(), 100);
+		musiccontrols = new MusicControls(this, musiccontrolsSize);
 
-	controller->Add(musiccontrols, 0, wxEXPAND);
+		controller->Add(musiccontrols, 0, wxEXPAND);
 
-	controller->Layout();
+		controller->Layout();
+	}
 }
 
