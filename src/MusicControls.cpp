@@ -4,7 +4,25 @@ MusicControls::MusicControls(wxWindow* parent, wxSize& size) : wxWindow(parent, 
 {
 	SetBackgroundColour(wxColour(52, 60, 92));
 
+	// Allocating controlsSizer
 	loadMusicControls();
+
+	// Allocating mainSizer
+	mainSizer = new wxBoxSizer(wxVERTICAL);
+
+	mainSizer->Add(
+		new wxGauge(this, MUSICGAUGE, 10, wxDefaultPosition, wxDefaultSize, wxGA_SMOOTH | wxGA_HORIZONTAL),
+		0,
+		wxALL | wxALIGN_CENTRE,
+		15
+	);
+	mainSizer->Add(
+		controlsSizer,
+		0,
+		wxALL | wxALIGN_CENTRE
+	);
+
+	this->SetSizer(mainSizer);
 }
 
 void MusicControls::loadMusicControls()
@@ -22,7 +40,7 @@ void MusicControls::loadMusicControls()
 		Close(true);
 	}
 	controlsSizer->Add(
-		new wxBitmapButton(this, SHUFFLE, imageBitmap, wxDefaultPosition, wxSize(80, 80)),
+		new wxBitmapButton(this, SHUFFLE, imageBitmap, wxDefaultPosition, wxSize(50, 50)),
 		0,
 		wxALL | wxALIGN_CENTRE,
 		5
@@ -36,7 +54,7 @@ void MusicControls::loadMusicControls()
 		Close(true);
 	}
 	controlsSizer->Add(
-		new wxBitmapButton(this, PLAYPREVIOUS, imageBitmap, wxDefaultPosition, wxSize(80, 80)),
+		new wxBitmapButton(this, PLAYPREVIOUS, imageBitmap, wxDefaultPosition, wxSize(50, 50)),
 		0,
 		wxALL | wxALIGN_CENTRE,
 		5
@@ -50,7 +68,7 @@ void MusicControls::loadMusicControls()
 		Close(true);
 	}
 	controlsSizer->Add(
-		new wxBitmapButton(this, PLAYBUTTON, imageBitmap, wxDefaultPosition, wxSize(80, 80)),
+		new wxBitmapButton(this, PLAYBUTTON, imageBitmap, wxDefaultPosition, wxSize(50, 50)),
 		0,
 		wxALL | wxALIGN_CENTRE,
 		5
@@ -64,14 +82,12 @@ void MusicControls::loadMusicControls()
 		Close(true);
 	}
 	controlsSizer->Add(
-		new wxBitmapButton(this, PLAYNEXT, imageBitmap, wxDefaultPosition, wxSize(80, 80)),
+		new wxBitmapButton(this, PLAYNEXT, imageBitmap, wxDefaultPosition, wxSize(50, 50)),
 		0,
 		wxALL | wxALIGN_CENTRE,
 		5
 	);
 
 	controlsSizer->AddStretchSpacer();
-
-	this->SetSizer(controlsSizer);
 }
 
