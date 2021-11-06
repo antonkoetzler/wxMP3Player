@@ -1,3 +1,0 @@
-/home/flqn/git/wxMP3Player/build/CMakeFiles/rebuild_cache.dir
-/home/flqn/git/wxMP3Player/build/CMakeFiles/edit_cache.dir
-/home/flqn/git/wxMP3Player/build/CMakeFiles/wxMP3Player.dir
