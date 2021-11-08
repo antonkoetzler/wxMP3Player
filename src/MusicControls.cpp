@@ -11,7 +11,7 @@ MusicControls::MusicControls(wxWindow* parent, wxSize& size) : wxWindow(parent, 
 	mainSizer = new wxBoxSizer(wxVERTICAL);
 
 	mainSizer->Add(
-		new wxGauge(this, MUSICGAUGE, 10, wxDefaultPosition, wxDefaultSize, wxGA_SMOOTH | wxGA_HORIZONTAL),
+		new wxSlider(this, MUSICGAUGE, 0, 0, 60, wxDefaultPosition, wxSize(275, 30)),
 		0,
 		wxALL | wxALIGN_CENTRE,
 		15

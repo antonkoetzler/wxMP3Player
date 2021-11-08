@@ -29,5 +29,8 @@ private:
 
 	// For loading images
 	wxBitmap imageBitmap;
+
+	// For playing songs
+	wxMediaCtrl* mediaPlayer;
 };
 

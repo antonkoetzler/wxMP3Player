@@ -33,7 +33,7 @@ void Frame::EnableMusicControls(wxCommandEvent& evt)
 	if (musiccontrols == nullptr)
 	{
 		wxSize parentSize = this->GetSize();
-		wxSize musiccontrolsSize = wxSize(parentSize.GetWidth(), 100);
+		wxSize musiccontrolsSize = wxSize(parentSize.GetWidth(), 120);
 		musiccontrols = new MusicControls(this, musiccontrolsSize);
 
 		controller->Add(musiccontrols, 0, wxEXPAND);
