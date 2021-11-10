@@ -3,7 +3,7 @@
 #include <wx/wx.h>
 #include <wx/dir.h>
 
-enum { SONGLIST = wxID_HIGHEST + 1 };
+enum { SONGLIST };
 
 class SongList : public wxListBox
 {

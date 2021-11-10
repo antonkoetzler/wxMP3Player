@@ -5,12 +5,13 @@
 
 enum
 {
-	MUSICCONTROLS = wxID_HIGHEST + 1,
-	SHUFFLE = wxID_HIGHEST + 1,
-	PLAYPREVIOUS = wxID_HIGHEST + 1,
-	PLAYBUTTON = wxID_HIGHEST + 1,
-	PLAYNEXT = wxID_HIGHEST + 1,
-	MUSICGAUGE = wxID_HIGHEST + 1
+	MUSICCONTROLS,
+	SHUFFLE,
+	PLAYPREVIOUS,
+	PLAYBUTTON,
+	PLAYNEXT,
+	MUSICGAUGE,
+	MEDIA
 };
 
 class MusicControls : public wxWindow
@@ -21,7 +22,15 @@ public:
 	// Allocates controlsSizer
 	void loadMusicControls();
 
+	// Sets the media player to play media
+	void SetMediaPlayer(wxString);
+	void TogglePlay(wxCommandEvent&);
+	void ToggleShuffle(wxCommandEvent&);
+	void PlayNext(wxCommandEvent&);
+
 private:
+	DECLARE_EVENT_TABLE();
+
 	// Sizer to hold controlsSizer and the music gauge
 	wxBoxSizer* mainSizer;
 
@@ -32,6 +41,6 @@ private:
 	wxBitmap imageBitmap;
 
 	// For playing songs
-	wxMediaCtrl* mediaPlayer;
+	wxMediaCtrl* mediaPlayer = nullptr;
+	bool shuffle = false;
 };
-

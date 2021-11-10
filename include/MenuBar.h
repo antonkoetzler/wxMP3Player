@@ -2,7 +2,7 @@
 
 #include <wx/wx.h>
 
-enum { YT2MP3 = wxID_HIGHEST + 1 };
+enum { YT2MP3 };
 
 class MenuBar : public wxMenuBar
 {

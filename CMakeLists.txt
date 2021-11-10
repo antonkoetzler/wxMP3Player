@@ -3,7 +3,7 @@ PROJECT(wxMP3Player)
 
 SET(wxWidgets_CONFIGURATION mswu)
 
-FIND_PACKAGE(wxWidgets REQUIRED core base)
+FIND_PACKAGE(wxWidgets REQUIRED core base media)
 INCLUDE("${wxWidgets_USE_FILE}")
 
 AUX_SOURCE_DIRECTORY(./src/ SRC)
