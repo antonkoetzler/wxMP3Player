@@ -5,6 +5,7 @@ BEGIN_EVENT_TABLE(MusicControls, wxWindow)
 	EVT_BUTTON(SHUFFLE, MusicControls::ToggleShuffle)
 	EVT_BUTTON(PLAYNEXT, MusicControls::PlayNext)
 	EVT_BUTTON(PLAYPREVIOUS, MusicControls::PlayPrevious)
+	EVT_SCROLL_THUMBRELEASE(MusicControls::ChangeCurrentTimePlaying)
 END_EVENT_TABLE()
 
 MusicControls::MusicControls(wxWindow* parent, wxSize& size) : wxWindow(parent, MUSICCONTROLS, wxDefaultPosition, size)
@@ -82,12 +83,21 @@ void MusicControls::loadMusicControls()
 
 	controlsSizer->AddStretchSpacer();
 
-
 	// Allocating mainSizer
 	mainSizer = new wxBoxSizer(wxVERTICAL);
 
+	musicGauge = new wxSlider(
+		this,
+		MUSICGAUGE,
+		0,
+		0,
+		60,
+		wxDefaultPosition,
+		wxSize(275, 30)
+	);
+
 	mainSizer->Add(
-		new wxSlider(this, MUSICGAUGE, 0, 0, 60, wxDefaultPosition, wxSize(275, 30)),
+		musicGauge,
 		0,
 		wxALL | wxALIGN_CENTRE,
 		15
@@ -121,6 +131,12 @@ void MusicControls::SetMediaPlayer(wxString songName, SongList* songs)
 		wxDefaultPosition,
 		wxDefaultSize
 	);
+
+	if (musicGaugeTimer != nullptr)
+	{
+		delete musicGaugeTimer; musicGaugeTimer = nullptr;
+	}
+	musicGaugeTimer = new UpdateGauge(mediaPlayer, musicGauge);
 
 	mediaPlayer->Play();
 }
@@ -182,4 +198,11 @@ void MusicControls::PlayPrevious(wxCommandEvent& evt)
 	mediaPlayer->Load(songCache[songCache.size() - 1]);
 	mediaPlayer->Play();
 	songCache.pop_back();
+}
+
+void MusicControls::ChangeCurrentTimePlaying(wxScrollEvent& evt)
+{
+	std::cout << "Working" << std::endl;
+	musicGauge->SetValue(evt.GetPosition());
+	mediaPlayer->Seek(evt.GetPosition() * 1000);
 }

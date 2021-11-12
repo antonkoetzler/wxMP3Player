@@ -22,6 +22,6 @@ private:
 	wxBoxSizer* controller;
 	MenuBar* menubar;
 	SongList* songlist;
-	MusicControls* musiccontrols;
+	MusicControls* musiccontrols = nullptr;
 };
 

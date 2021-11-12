@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <vector>
 #include "SongList.h"
+#include "UpdateGauge.h"
 
 enum
 {
@@ -30,6 +31,7 @@ public:
 	void ToggleShuffle(wxCommandEvent&);
 	void PlayNext(wxCommandEvent&);
 	void PlayPrevious(wxCommandEvent&);
+	void ChangeCurrentTimePlaying(wxScrollEvent&);
 
 private:
 	DECLARE_EVENT_TABLE();
@@ -48,4 +50,8 @@ private:
 	bool shuffle = false;
 	SongList* playlist = nullptr;
 	std::vector<wxString> songCache;
+
+	// Gauge and gauge timer to update
+	UpdateGauge* musicGaugeTimer = nullptr;
+	wxSlider* musicGauge = nullptr;
 };

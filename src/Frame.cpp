@@ -44,4 +44,3 @@ void Frame::EnableMusicControls(wxCommandEvent& evt)
 	// Sets up the media player to play the song
 	musiccontrols->SetMediaPlayer(evt.GetString(), songlist);
 }
-
