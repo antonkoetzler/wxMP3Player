@@ -10,6 +10,7 @@ public:
 	MenuBar();
 	void Exit(wxCommandEvent&);
 	void Youtube2MP3(wxCommandEvent&);
+	void ConvertToMP3(wxCommandEvent&);
 
 private:
 	wxMenu* file;

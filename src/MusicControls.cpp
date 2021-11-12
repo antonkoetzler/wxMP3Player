@@ -136,7 +136,7 @@ void MusicControls::SetMediaPlayer(wxString songName, SongList* songs)
 	{
 		delete musicGaugeTimer; musicGaugeTimer = nullptr;
 	}
-	musicGaugeTimer = new UpdateGauge(mediaPlayer, musicGauge);
+	musicGaugeTimer = new UpdateGauge(mediaPlayer, musicGauge, playlist);
 
 	mediaPlayer->Play();
 }
@@ -202,7 +202,6 @@ void MusicControls::PlayPrevious(wxCommandEvent& evt)
 
 void MusicControls::ChangeCurrentTimePlaying(wxScrollEvent& evt)
 {
-	std::cout << "Working" << std::endl;
 	musicGauge->SetValue(evt.GetPosition());
 	mediaPlayer->Seek(evt.GetPosition() * 1000);
 }
