@@ -4,6 +4,7 @@ BEGIN_EVENT_TABLE(MusicControls, wxWindow)
 	EVT_BUTTON(PLAYBUTTON, MusicControls::TogglePlay)
 	EVT_BUTTON(SHUFFLE, MusicControls::ToggleShuffle)
 	EVT_BUTTON(PLAYNEXT, MusicControls::PlayNext)
+	EVT_BUTTON(PLAYPREVIOUS, MusicControls::PlayPrevious)
 END_EVENT_TABLE()
 
 MusicControls::MusicControls(wxWindow* parent, wxSize& size) : wxWindow(parent, MUSICCONTROLS, wxDefaultPosition, size)
@@ -98,14 +99,20 @@ void MusicControls::loadMusicControls()
 	);
 }
 
-void MusicControls::SetMediaPlayer(wxString songName)
+void MusicControls::SetMediaPlayer(wxString songName, SongList* songs)
 {
+	if (playlist != nullptr)
+		playlist = nullptr;
 	if (mediaPlayer != nullptr)
 	{
 		delete mediaPlayer; mediaPlayer = nullptr;
 	}
 
+	playlist = songs;
+
 	wxString songPath = wxGetCwd() + "/../songs/" + songName;
+
+	songCache.push_back(songPath);
 
 	mediaPlayer = new wxMediaCtrl(
 		this,
@@ -142,8 +149,37 @@ void MusicControls::ToggleShuffle(wxCommandEvent& evt)
 
 void MusicControls::PlayNext(wxCommandEvent& evt)
 {
-	if (!shuffle)
-		shuffle = true;
-	else
-		shuffle = false;
+	if (playlist != nullptr)
+	{
+		int nextSongIndex;
+
+		songCache.push_back(playlist->GetString(playlist->GetSelection()));
+
+		if (shuffle)
+			nextSongIndex = (rand() % playlist->GetCount() + 1) - 1;
+		else
+		{
+			nextSongIndex =  playlist->GetSelection() + 1;
+
+			// Checking to see if we're currently on the last song of the playlist
+			if (nextSongIndex > (playlist->GetCount() - 1))
+				nextSongIndex = 0;
+		}
+
+		// Loading the next song
+		wxString songName = playlist->GetString(nextSongIndex);
+		wxString songDirectory = wxGetCwd() + "/../songs/" + songName;
+
+		mediaPlayer->Load(songDirectory);
+		mediaPlayer->Play();
+
+		playlist->SetSelection(nextSongIndex);
+	}
+}
+
+void MusicControls::PlayPrevious(wxCommandEvent& evt)
+{
+	mediaPlayer->Load(songCache[songCache.size() - 1]);
+	mediaPlayer->Play();
+	songCache.pop_back();
 }

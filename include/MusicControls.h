@@ -2,6 +2,9 @@
 
 #include <wx/wx.h>
 #include <wx/mediactrl.h>
+#include <stdlib.h>
+#include <vector>
+#include "SongList.h"
 
 enum
 {
@@ -22,11 +25,11 @@ public:
 	// Allocates controlsSizer
 	void loadMusicControls();
 
-	// Sets the media player to play media
-	void SetMediaPlayer(wxString);
+	void SetMediaPlayer(wxString, SongList*);
 	void TogglePlay(wxCommandEvent&);
 	void ToggleShuffle(wxCommandEvent&);
 	void PlayNext(wxCommandEvent&);
+	void PlayPrevious(wxCommandEvent&);
 
 private:
 	DECLARE_EVENT_TABLE();
@@ -43,4 +46,6 @@ private:
 	// For playing songs
 	wxMediaCtrl* mediaPlayer = nullptr;
 	bool shuffle = false;
+	SongList* playlist = nullptr;
+	std::vector<wxString> songCache;
 };
