@@ -13,6 +13,7 @@ public:
 
 	// Event functions
 	void EnableMusicControls(wxCommandEvent&);
+	void RefreshSongList(wxCommandEvent&);
 
 private:
 	wxDECLARE_EVENT_TABLE();

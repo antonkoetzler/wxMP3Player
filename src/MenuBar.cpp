@@ -16,54 +16,49 @@ MenuBar::MenuBar() : wxMenuBar()
 	file->Append(exit);
 	this->Append(file, "File");
 
-	add = new wxMenu();
+	edit = new wxMenu();
 
-	yt2mp3 = new wxMenuItem(
+	addsongs = new wxMenuItem(
 		nullptr,
-		YT2MP3,
-		"Add song from youtube\tCtrl+Y",
-		"Youtube to mp3's a song and adds to your library",
+		ADDSONGS,
+		"Add songs to your directory\tCtrl+A",
+		"Add songs",
 		wxITEM_NORMAL,
 		nullptr
 	);
-	add->Append(yt2mp3);
-	this->Append(add, "Add");
+
+	refresh = new wxMenuItem(
+		nullptr,
+		REFRESHSONGS,
+		"Refresh's the directory and media\tCtrl+R",
+		wxEmptyString,
+		wxITEM_NORMAL,
+		nullptr
+	);
+
+	edit->Append(addsongs);
+	edit->Append(refresh);
+	this->Append(edit, "Edit");
 }
 
 void MenuBar::Exit(wxCommandEvent& evt) { Close(true); }
 
-void MenuBar::Youtube2MP3(wxCommandEvent& evt)
+void MenuBar::AddSongs(wxCommandEvent& evt)
 {
-	// ./youtube-dl -x --audio-format=mp3 -o <directory> <url>
-	wxExecute("echo hi");
-
-	/*
-	wxFrame* newWindow = new wxFrame(
+	std::cout << "Is it working" << std::endl;
+	wxDialog* dialogWindow = new wxDialog(
 		nullptr,
 		wxID_ANY,
-		"Paste your YT video to convert to MP3",
+		"Adding songs to listen to",
 		wxDefaultPosition,
 		wxDefaultSize
 	);
-
-	wxTextCtrl* link = new wxTextCtrl(
-		newWindow,
+	wxStaticText* message = new wxStaticText(
+		dialogWindow,
 		wxID_ANY,
-		wxEmptyString,
+		"Go to the project's root directory, then add songs in ./songs/ :)",
 		wxDefaultPosition,
-		wxSize(300, 20)
+		wxDefaultSize
 	);
-
-	wxBoxSizer* container = new wxBoxSizer(wxHORIZONTAL);
-	container->Add(link, 1, wxEXPAND);
-	container->Add(
-		new wxButton(newWindow, CONVERT2MP3, "Click to Convert", wxDefaultPosition, wxDefaultSize),
-		0,
-		wxEXPAND
-	);
-
-	newWindow->SetSizerAndFit(container);
-
-	newWindow->Show(true);
-	*/
+	dialogWindow->Show(true);
 }

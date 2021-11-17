@@ -3,7 +3,8 @@
 BEGIN_EVENT_TABLE(Frame, wxFrame)
 	// MenuBar events
 	EVT_MENU(wxID_EXIT, MenuBar::Exit)
-	EVT_MENU(YT2MP3, MenuBar::Youtube2MP3)
+	EVT_MENU(ADDSONGS, MenuBar::AddSongs)
+	EVT_MENU(REFRESHSONGS, Frame::RefreshSongList)
 
 	// SongList events
 	EVT_LISTBOX_DCLICK(SONGLIST, Frame::EnableMusicControls)
@@ -30,17 +31,27 @@ Frame::~Frame() { this->Destroy(); }
 
 void Frame::EnableMusicControls(wxCommandEvent& evt)
 {
-	if (musiccontrols == nullptr)
+	if (musiccontrols != nullptr)
 	{
-		wxSize parentSize = this->GetSize();
-		wxSize musiccontrolsSize = wxSize(parentSize.GetWidth(), 120);
-		musiccontrols = new MusicControls(this, musiccontrolsSize);
-
-		controller->Add(musiccontrols, 0, wxEXPAND);
-
-		controller->Layout();
+		delete musiccontrols; musiccontrols = nullptr;
 	}
+
+	wxSize parentSize = this->GetSize();
+	wxSize musiccontrolsSize = wxSize(parentSize.GetWidth(), 120);
+	musiccontrols = new MusicControls(this, musiccontrolsSize);
+
+	controller->Add(musiccontrols, 0, wxEXPAND);
+
+	controller->Layout();
 
 	// Sets up the media player to play the song
 	musiccontrols->SetMediaPlayer(evt.GetString(), songlist);
+}
+
+void Frame::RefreshSongList(wxCommandEvent& evt)
+{
+	delete songlist; songlist = nullptr;
+	songlist = new SongList(this);
+	controller->Add(songlist, 1, wxEXPAND);
+	controller->Layout();
 }
